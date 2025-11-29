@@ -1,0 +1,39 @@
+
+
+
+:host ::ng-deep .owl-dot span {
+  width: 14px;
+  height: 14px;
+
+    transform: translateY(-40px);
+
+
+
+}
+
+:host ::ng-deep .owl-dots .owl-dot:nth-child(n+3) {
+  display: none !important;
+}
+.phone-icon {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+}
+
+.phone-icon.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+

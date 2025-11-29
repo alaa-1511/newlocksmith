@@ -1,0 +1,236 @@
+<section class="relative min-h-screen bg-[url('/form.jpg')] bg-cover bg-center flex items-center justify-center p-4">
+
+  <div class="absolute inset-0 bg-black/70"></div>
+
+
+  <div
+    class="relative z-10 w-full max-w-lg bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl p-4 text-white">
+    <h2 class="text-2xl font-semibold text-center mb-1 text-white">Get Help Now</h2>
+
+    <form class="space-y-2  " data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500"
+      [formGroup]="forminit" (ngSubmit)="onSubmit($event)">
+
+
+      <!-- Name -->
+
+      <div class="  ">
+        @let controlName =forminit.get('name');
+        <label class=" pb-1 block text-white font-semibold text-base ">Name</label>
+        <input type="text" formControlName="name" placeholder="Enter your Name"
+          class=" placeholder:text-white border-white bg-transparent mb-1 py-3 focus:border-primary w-full outline-0 focus:ring-0 rounded-lg  shadow-md hover:shadow-lg hover:scale-[1.01] transition-all duration-300 focus:outline-none  " />
+
+        @if (controlName?.errors && controlName?.touched ) {
+        <div class="flex p-4   text-sm text-primary rounded-lg bg-gray-50" role="alert">
+          <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3
+            1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1
+            0 2Z" />
+          </svg>
+
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+              @if( controlName?.getError('required')) {
+              <li>The name is required</li>
+              }
+              @if( controlName?.getError('minlength')) {
+              <li>The name must be at least 3 characters long.</li>
+              }
+              @if( controlName?.getError('maxlength')) {
+              <li>Please enter a password between 3 and 20 characters.</li> }
+            </ul>
+          </div>
+        </div>
+        }
+      </div>
+
+      <!--service -->
+      <div class="">
+        @let controlservice = forminit.get('service');
+        <label class="pb-1 block text-white font-semibold text-base">Service</label>
+
+        <div class="relative">
+
+          <!-- Main Dropdown Button -->
+          <button (click)="toggleDropdown()"
+            class="inline-flex items-center justify-between mb-1 w-full text-sm font-medium bg-transparent text-white px-4 py-3 border border-white rounded-lg shadow-md hover:shadow-lg hover:scale-[1.01] transition-all duration-300 focus:outline-none focus:border-primary"
+            type="button">
+            {{ selectedService() || 'Choose Service' }}
+            <svg class="w-4 h-4 ml-2 transition-transform duration-300" [class.rotate-180]="mainDropdownOpen()"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Main Dropdown -->
+          <div *ngIf="mainDropdownOpen()"
+            class="absolute z-20 mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-xl transition-all duration-300">
+            <ul class="p-2 text-sm text-gray-700 font-medium">
+
+              <li class="relative" *ngFor="let service of services; let i = index">
+                <button (click)="toggleSubDropdown(i)"
+                  class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 rounded-md transition-all">
+                  {{ service.label }}
+                  <svg class="h-4 w-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7" />
+                  </svg>
+                </button>
+
+                <div *ngIf="subDropdownOpen()[i]" class="absolute w-60 z-30 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-300
+                   top-full left-0 sm:top-0 sm:left-full sm:ml-2">
+                  <ul class="p-2 text-sm text-gray-700">
+                    <li *ngFor="let sub of service.subServices">
+                      <a (click)="selectService(sub)" class="block px-4 py-2 hover:bg-gray-100 rounded-md">
+                        {{ sub }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        <!-- Validation Error -->
+        @if (controlservice?.errors && controlservice?.touched ) {
+        <div class="flex p-4 mb-4 text-sm text-primary rounded-lg bg-gray-50" role="alert">
+          <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3
+          1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1
+          0 2Z" />
+          </svg>
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+              @if( controlservice?.getError('required')) {
+              <li>The Choose Service is required</li>
+              }
+            </ul>
+          </div>
+        </div>
+        }
+      </div>
+
+
+      <!-- address  -->
+
+      <div class="">
+        @let controlAddress = forminit.get('address');
+        <label class="block text-white font-medium mb-2">Address</label>
+
+        <div class="relative">
+          <input type="address" formControlName="address" placeholder="Enter your address"
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-transparent
+             text-white
+               focus:border-primary
+              ease-in-out shadow-sm hover:shadow-lg hover:scale-[1.01] mb-1 transition-all duration-300 focus:outline-none placeholder:text-white  " />
+
+
+        </div>
+
+        @if (controlAddress?.errors && controlAddress?.touched) {
+        <div class="flex p-4  text-sm text-primary rounded-lg bg-gray-50" role="alert">
+          <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3
+            1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1
+            0 2Z" />
+          </svg>
+
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+              @if( controlAddress?.getError('required')) {
+              <li>The Addrees is required</li>
+              }
+
+
+            </ul>
+          </div>
+        </div>
+        }
+      </div>
+      <!-- phone -->
+
+      <div class="  ">
+        @let controlPhone =forminit.get('phone');
+        <label class="pb-2 block text-white font-semibold text-base  ">Phone</label>
+        <input type="tel" formControlName="phone" placeholder="Enter your phone" class="placeholder:text-white py-3 mb-1 border-white bg-transparent
+  focus:border-primary w-full outline-0 focus:ring-0 rounded-lg shadow-md
+  hover:shadow-lg hover:scale-[1.01] transition-all duration-300
+  focus:outline-none" />
+
+
+        @if (controlPhone?.errors && controlPhone?.touched ) {
+        <div class="flex p-4 mb-4 text-sm text-primary rounded-lg bg-gray-50" role="alert">
+          <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3
+            1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1
+            0 2Z" />
+          </svg>
+
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+              @if( controlPhone?.getError('required')) {
+              <li>The Phone is required</li>
+              }
+              @if( controlPhone?.getError('pattern')) {
+              <li> Invalid US number! Please enter like: +1 (555) 123-4567 🇺🇸.</li>
+              }
+
+            </ul>
+          </div>
+        </div>
+        }
+      </div>
+      <!-- message -->
+      <div class="  ">
+        @let controlmessage =forminit.get('message');
+        <label class="pb-2 block text-white font-semibold text-base  "> Your Project Brief Message </label>
+        <textarea rows="3" formControlName="message" placeholder="Enter your Message" class="placeholder:text-white py-3 mb-1 border-white bg-transparent
+  focus:border-primary w-full outline-0 focus:ring-0 rounded-lg shadow-md
+  hover:shadow-lg hover:scale-[1.01] transition-all duration-300
+  focus:outline-none"></textarea>
+
+
+        @if (controlmessage?.errors && controlmessage?.touched ) {
+        <div class="flex p-4 mb-4 text-sm text-primary rounded-lg bg-gray-50" role="alert">
+          <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3
+            1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1
+            0 2Z" />
+          </svg>
+
+          <div>
+            <ul class="mt-1.5 list-disc list-inside">
+              @if( controlmessage?.getError('required')) {
+              <li>The Phone is required</li>
+              }
+
+
+            </ul>
+          </div>
+        </div>
+        }
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      <button
+        class="w-full bg-primary text-white font-semibold py-3 rounded-xl hover:bg-primary2 transition-all duration-300 shadow-md">
+        Get Help Now
+      </button>
+    </form>
+  </div>
+</section>
