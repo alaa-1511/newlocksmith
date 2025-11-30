@@ -40,6 +40,19 @@
 
 
 }
+.card {
+@apply min-w-[260px] p-4 rounded-xl bg-white/10 border border-white/10 shadow-lg backdrop-blur-md text-white;
+}
+.badge {
+@apply inline-block px-3 py-1 rounded-full bg-black/30 text-xs font-semibold mb-2;
+}
+.title {
+@apply text-lg font-bold mb-2;
+}
+.desc {
+@apply text-gray-200 text-sm;
+}
+
 @layer utilities {
   .shadow-custom {
     box-shadow: 0 0px 10px #0000000D;

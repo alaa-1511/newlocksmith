@@ -49,9 +49,11 @@ export class Navbar {
         initFlowbite();
       });
     }
-  }callNow() {
-  window.location.href = "tel:+201234567890";
+  }
+callNow() {
+  window.location.href = "tel:+13179439599";
 }
+
 
 
 }
