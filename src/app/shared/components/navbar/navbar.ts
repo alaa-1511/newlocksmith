@@ -1,12 +1,12 @@
 import { Component, HostListener, Inject, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { FlowbiteService } from '../../../core/service/service/flowbite-service';
 import { initFlowbite } from 'flowbite';
-import { isPlatformBrowser, ViewportScroller } from '@angular/common';
+import { isPlatformBrowser, NgClass, ViewportScroller } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ RouterLink ,RouterLinkActive ],
+  imports: [ RouterLink ,RouterLinkActive,NgClass ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
