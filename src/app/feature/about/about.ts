@@ -11,5 +11,7 @@ import { RouterLink } from "@angular/router";
   styleUrl: './about.css',
 })
 export class About {
-
+callNow() {
+  window.location.href = "tel:+13179439599";
+}
 }
