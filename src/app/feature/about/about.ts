@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 
 
 import { RouterLink } from "@angular/router";
@@ -11,7 +12,11 @@ import { RouterLink } from "@angular/router";
   styleUrl: './about.css',
 })
 export class About {
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+
 callNow() {
-  window.location.href = "tel:+13179439599";
+  if (isPlatformBrowser(this.platformId)) {
+    window.open("tel:3179439599");
+  }
 }
 }
