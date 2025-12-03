@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './footer.css',
 })
 export class Footer {
-
+callNow() {
+  window.location.href = "tel:+13179439599";
+}
 }
