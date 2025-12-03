@@ -2,7 +2,7 @@
   <nav
    [ngClass]="{
     ' shadow-md  backdrop-blur-md bg-black/60 text-black':isScrolled(),
-    'bg-transparent text-white ': !isScrolled() ,
+    'bg-transparent  text-white ': !isScrolled() ,
   } " 
    class=" fixed w-full z-30  top-0 start-0  py-2">
 
@@ -25,7 +25,7 @@
       </button>
 
       <!-- MENU -->
-      <div class="hidden w-full  grow md:flex md:w-auto" id="navbar-default">
+      <div class="hidden w-full  grow md:flex md:w-auto bg-black/60 backdrop-blur-md md:bg-transparent  "   id="navbar-default">
         <ul
           class="font-medium flex flex-col ms-6 p-4 md:p-0 mt-0 rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-4 rtl:space-x-reverse md:mt-3 md:border-0 md:bg-neutral-primary">
 
@@ -51,7 +51,7 @@
         </ul>
 
 
-        <div class="flex md:space-x-3 ms-auto  space-x-1 rtl:space-x-reverse items-center justify-center mt-2">
+        <div class="flex md:space-x-3 ms-auto  space-x-1 rtl:space-x-reverse items-center justify-center pb-4">
 
           <a href="#" class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-600 hover:bg-white hover:text-gray-600 text-white  shadow-md">
             <i class="fa-brands fa-facebook-f"></i>
