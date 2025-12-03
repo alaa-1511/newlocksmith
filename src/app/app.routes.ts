@@ -8,6 +8,7 @@ import { Automotive } from './feature/home/ourservice/automotive/automotive';
 import { Residential } from './feature/home/ourservice/residential/residential';
 import { Commercial } from './feature/home/ourservice/commercial/commercial';
 import { Emergency } from './feature/home/ourservice/emergency/emergency';
+import { Term } from './shared/components/footer/term/term';
 
 
 export const routes: Routes = [
@@ -21,7 +22,7 @@ export const routes: Routes = [
 {path:'residential' ,component: Residential},
 {path:'commercial' ,component: Commercial},
 {path:'emergency' ,component: Emergency},
-
+{path:'term' ,component: Term},
 
 
 ];
