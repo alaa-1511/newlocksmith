@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Location } from "../home/location/location";
+
 
 import { RouterLink } from "@angular/router";
 

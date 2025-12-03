@@ -19,7 +19,7 @@ export class Service {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
     dotsEach: false,
     navSpeed: 700,
     nav: false,

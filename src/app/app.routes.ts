@@ -9,6 +9,7 @@ import { Residential } from './feature/home/ourservice/residential/residential';
 import { Commercial } from './feature/home/ourservice/commercial/commercial';
 import { Emergency } from './feature/home/ourservice/emergency/emergency';
 
+
 export const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: "full"  },
 {path:'home' ,component:Home},
@@ -20,6 +21,7 @@ export const routes: Routes = [
 {path:'residential' ,component: Residential},
 {path:'commercial' ,component: Commercial},
 {path:'emergency' ,component: Emergency},
+
 
 
 ];

@@ -12,7 +12,7 @@ import { Footform } from './footform/footform';
 
 @Component({
   selector: 'app-home',
-  imports: [Hero, Location, Ourservice, Slider, Choose, Works, Experts ,Frequently ,Footform],
+  imports: [Hero, Location, Ourservice, Slider, Choose, Experts ,Frequently ,Footform],
 
 templateUrl: './home.html',
   styleUrl: './home.css',

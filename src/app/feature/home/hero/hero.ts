@@ -6,7 +6,7 @@ import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-hero',
-  imports: [CarouselModule, RouterLink],
+  imports: [CarouselModule, ],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
