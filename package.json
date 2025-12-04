@@ -34,6 +34,7 @@
     "@angular/ssr": "^20.3.2",
     "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^7.1.0",
+    "@primeng/themes": "^20.3.0",
     "@tailwindcss/postcss": "^4.1.16",
     "aos": "^2.3.4",
     "body-parser": "^2.2.0",

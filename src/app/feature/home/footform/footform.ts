@@ -10,16 +10,22 @@ import { initFlowbite } from 'flowbite';
 import { TreeModule } from 'primeng/tree';
 import { HttpClient } from '@angular/common/http';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import { MessageService } from 'primeng/api';
+import { Toast } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { Ripple } from 'primeng/ripple';
 
 @Component({
   selector: 'app-footform',
-  imports: [ReactiveFormsModule, TreeModule, CommonModule],
+  imports: [ReactiveFormsModule, TreeModule, CommonModule, ButtonModule, Ripple, Toast],
   templateUrl: './footform.html',
   styleUrl: './footform.css',
+  providers: [MessageService]
 })
 export class Footform {
 
   private httpClient = inject(HttpClient)
+  private readonly messageService = inject(MessageService);
 
   isValid = signal(false);
 
@@ -71,41 +77,6 @@ export class Footform {
   }
 
 
-
-
-  // onSubmit(e: Event) {
-  //   e.preventDefault();
-  //   const templateParams = {
-  //     name: this.getValue('name'),
-  //     service: this.getValue('service'),
-  //     address: this.getValue('address'),
-  //     phone: this.getValue('phone'),
-  //     message: this.getValue('message'),
-  //   };
-
-  //   console.log(templateParams);
-
-  //   if (this.forminit.valid) {
-  //     emailjs.send(
-  //       'service_nrg1sfr',      // Replace with your Service ID
-  //       'template_37el0ov',     // Replace with your Template ID
-  //       templateParams,
-  //       'eoXEh-tCUHuAfQxZV',  // Replace with your Public Key
-
-  //     ).then(
-  //       (response) => {
-  //         console.log('SUCCESS!', response.status, response.text);
-  //         alert('Email sent successfully!');
-  //       },
-  //       (error) => {
-  //         console.log('FAILED...', (error as EmailJSResponseStatus).text);
-  //         alert('Failed to send email. Please try again.');
-  //       }
-  //     );
-  //   }
-  // }
-
-
   onSubmit(e: Event) {
 
 
@@ -129,13 +100,23 @@ export class Footform {
       ).then(
         (response) => {
           console.log('SUCCESS!', response.status, response.text);
+          this.showSuccess();
           this.forminit.reset();
         },
         (error) => {
           console.log('FAILED...', (error as EmailJSResponseStatus).text);
+          this.showError();
         }
       );
-    }
+    } else this.showError();
+  }
+
+  showSuccess() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Sent Successfully', key: 'tl', life: 3000 });
+  }
+
+  showError() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Message Sending Failed', key: 'tl', life: 3000 });
   }
 
 

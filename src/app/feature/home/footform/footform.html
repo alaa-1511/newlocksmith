@@ -8,7 +8,7 @@
     <h2 class="text-2xl font-semibold text-center mb-1 text-white">Get Help Now</h2>
 
     <form class="space-y-2  " data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500"
-      [formGroup]="forminit" (ngSubmit)="onSubmit($event)">
+      [formGroup]="forminit">
 
 
       <!-- Name -->
@@ -228,9 +228,13 @@
 
 
       <button
-        class="w-full bg-primary text-white font-semibold py-3 rounded-xl hover:bg-primary2 transition-all duration-300 shadow-md">
+        class="w-full bg-primary text-white font-semibold py-3 rounded-xl hover:bg-primary2 transition-all duration-300 shadow-md"
+        (click)="onSubmit($event)">
         Get Help Now
       </button>
     </form>
+
+    <p-toast position="top-left" key="tl" />
+
   </div>
 </section>
