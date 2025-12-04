@@ -21,6 +21,9 @@ export class Footform {
 
   private httpClient = inject(HttpClient)
 
+  isValid = signal(false);
+
+
   constructor(
     private flowbiteService: FlowbiteService,
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -70,7 +73,42 @@ export class Footform {
 
 
 
+  // onSubmit(e: Event) {
+  //   e.preventDefault();
+  //   const templateParams = {
+  //     name: this.getValue('name'),
+  //     service: this.getValue('service'),
+  //     address: this.getValue('address'),
+  //     phone: this.getValue('phone'),
+  //     message: this.getValue('message'),
+  //   };
+
+  //   console.log(templateParams);
+
+  //   if (this.forminit.valid) {
+  //     emailjs.send(
+  //       'service_nrg1sfr',      // Replace with your Service ID
+  //       'template_37el0ov',     // Replace with your Template ID
+  //       templateParams,
+  //       'eoXEh-tCUHuAfQxZV',  // Replace with your Public Key
+
+  //     ).then(
+  //       (response) => {
+  //         console.log('SUCCESS!', response.status, response.text);
+  //         alert('Email sent successfully!');
+  //       },
+  //       (error) => {
+  //         console.log('FAILED...', (error as EmailJSResponseStatus).text);
+  //         alert('Failed to send email. Please try again.');
+  //       }
+  //     );
+  //   }
+  // }
+
+
   onSubmit(e: Event) {
+
+
     e.preventDefault();
     const templateParams = {
       name: this.getValue('name'),
@@ -80,23 +118,21 @@ export class Footform {
       message: this.getValue('message'),
     };
 
-    console.log(templateParams);
-
     if (this.forminit.valid) {
+      this.isValid.set(true);
       emailjs.send(
-        'service_nrg1sfr',      // Replace with your Service ID
-        'template_37el0ov',     // Replace with your Template ID
+        'service_skv124a',      // Replace with your Service ID
+        'template_contactUsLockal',     // Replace with your Template ID
         templateParams,
-        'eoXEh-tCUHuAfQxZV',  // Replace with your Public Key
+        'M5QVenUnwetw_DqVL',  // Replace with your Public Key
 
       ).then(
         (response) => {
           console.log('SUCCESS!', response.status, response.text);
-          alert('Email sent successfully!');
+          this.forminit.reset();
         },
         (error) => {
           console.log('FAILED...', (error as EmailJSResponseStatus).text);
-          alert('Failed to send email. Please try again.');
         }
       );
     }
